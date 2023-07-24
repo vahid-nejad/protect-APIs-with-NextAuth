@@ -1,5 +1,6 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -26,6 +27,7 @@ const handler = NextAuth({
           }),
         });
 
+        if (res.status === 401) return null;
         const user = await res.json();
 
         if (user) {
